@@ -1,0 +1,14 @@
+Array
+(
+    [status] => success
+    [message] => Connexion réussie
+    [user] => Array
+        (
+            [id] => 1
+            [pseudo] => LoneHero
+            [mail] => hero@example.com
+            [role] => user
+            [status] => active
+        )
+
+)
