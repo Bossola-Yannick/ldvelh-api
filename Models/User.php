@@ -13,7 +13,7 @@ class User extends ConnexionBdd
     public function userSignUp($pseudo, $userMail, $userPass)
     {
         $checkStmt = "SELECT id 
-        FROM user
+        FROM users
         WHERE mail = :userMail";
         $checkStmt = $this->bdd->prepare($checkStmt);
         $checkStmt->execute([
