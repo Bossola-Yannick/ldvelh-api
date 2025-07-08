@@ -5,7 +5,8 @@ error_reporting(E_ALL);
 
 // CORS - doit être fait avant toute sortie
 // si le front est sur localhost 5173 le changer ici ET dans le .htaccess
-$allowedOrigins = ['http://localhost:5174'];
+$allowedOrigins = ['http://localhost:5173'];
+// $allowedOrigins = ['http://localhost:5174'];
 
 if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
@@ -96,6 +97,18 @@ switch ($uri) {
             exit();
         }
         break;
+    //  TODO route a faire !!!
+    // case '/api-ldvelh/api/lonewolf/updateadventurebyid':
+    // case '/api-ldvelh/api/lonewolf/deleteadventurebyid':
+    // case '/api-ldvelh/api/lonewolf/createadventurebyid':
+    // case '/api-ldvelh/api/fighhtingfantasy/getadventurebyid':
+    // case '/api-ldvelh/api/fighhtingfantasy/updateadventurebyid':
+    // case '/api-ldvelh/api/fighhtingfantasy/deleteadventurebyid':
+    // case '/api-ldvelh/api/fighhtingfantasy/createadventurebyid':
+    // case '/api-ldvelh/api/grailquest/getadventurebyid':
+    // case '/api-ldvelh/api/grailquest/updateadventurebyid':
+    // case '/api-ldvelh/api/grailquest/deleteadventurebyid':
+    // case '/api-ldvelh/api/grailquest/createadventurebyid':
     default:
         http_response_code(404);
         echo json_encode([

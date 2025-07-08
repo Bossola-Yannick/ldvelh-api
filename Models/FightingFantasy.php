@@ -7,10 +7,8 @@ class FightingFantasy extends ConnexionBdd
     {
         parent::__construct($this->bdd);
     }
-
-    public function getAllAdventureByUser() {}
     public function getAdventureByID() {}
-    public function createAdventureByUser() {}
-    public function updateAdventureByUser() {}
-    public function deleteAdventureByUser() {}
+    public function createAdventure() {}
+    public function updateAdventure() {}
+    public function deleteAdventure() {}
 }

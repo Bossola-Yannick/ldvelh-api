@@ -15,7 +15,7 @@ class LoneWolf extends ConnexionBdd
                 WHERE lw_adventure.id = :adventureId";
         $adventureStmt = $this->bdd->prepare($adventureQuery);
         $adventureStmt->execute([':adventureId' => $adventureId]);
-        $adventure = $adventureStmt->fetchAll(PDO::FETCH_ASSOC);
+        $adventure = $adventureStmt->fetch(PDO::FETCH_ASSOC);
         //  recup élément du sac
         $bagQuery = "SELECT lw_bag.id AS bag_id, lw_bag.object, lw_bag.status
         FROM lw_bag
@@ -35,7 +35,7 @@ class LoneWolf extends ConnexionBdd
         $adventure['note'] = $note;
         return ['lone_wolf' => $adventure];
     }
-    public function createAdventureByUser() {}
-    public function updateAdventureByUser() {}
-    public function deleteAdventureByUser() {}
+    public function createAdventure() {}
+    public function updateAdventure() {}
+    public function deleteAdventure() {}
 }
