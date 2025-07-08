@@ -4,28 +4,86 @@ Array
         (
             [0] => Array
                 (
-                    [id] => 1
+                    [adventure_id] => 1
                     [title] => Les Maîtres des Ténèbres
+                    [chapter] => 7
+                    [ability] => 16
+                    [endurance] => 25
+                    [weapon1] => Sabre
+                    [weapon2] => Dague
+                    [discipline_one] => Camouflage
+                    [discipline_two] => Sixième Sens
+                    [discipline_three] => Maîtrise des Armes
+                    [discipline_for] => Guérison
+                    [discipline_five] => 
+                    [discipline_six] => 
+                    [discipline_more_one] => 
+                    [discipline_more_two] => 
+                    [discipline_more_three] => 
+                    [discipline_more_for] => 
+                    [discipline_more_five] => 
+                    [discipline_more_six] => 
                 )
 
-        )
-
-    [quete_graal] => Array
-        (
-            [0] => Array
+            [bag] => Array
                 (
-                    [id] => 1
-                    [title] => La Forêt de la Malédiction
+                    [0] => Array
+                        (
+                            [bag_id] => 1
+                            [object] => Pierre de feu
+                            [status] => common
+                        )
+
+                    [1] => Array
+                        (
+                            [bag_id] => 2
+                            [object] => Baume de soin
+                            [status] => common
+                        )
+
+                    [2] => Array
+                        (
+                            [bag_id] => 3
+                            [object] => Lanterne
+                            [status] => common
+                        )
+
+                    [3] => Array
+                        (
+                            [bag_id] => 4
+                            [object] => Anneau mystérieux
+                            [status] => special
+                        )
+
+                    [4] => Array
+                        (
+                            [bag_id] => 5
+                            [object] => Carte du royaume
+                            [status] => special
+                        )
+
                 )
 
-        )
-
-    [defis_fantastiques] => Array
-        (
-            [0] => Array
+            [note] => Array
                 (
-                    [id] => 1
-                    [title] => La Cité des Pièges
+                    [0] => Array
+                        (
+                            [notes_Id] => 1
+                            [note] => Première note LW
+                        )
+
+                    [1] => Array
+                        (
+                            [notes_Id] => 2
+                            [note] => Deuxième note LW
+                        )
+
+                    [2] => Array
+                        (
+                            [notes_Id] => 3
+                            [note] => Troisième note LW
+                        )
+
                 )
 
         )

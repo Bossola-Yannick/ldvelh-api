@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // Inclure les fichiers ensuite
 require_once __DIR__ . '/Models/User.php';
 require_once __DIR__ . '/Controllers/UserController.php';
+require_once __DIR__ . '/Controllers/LoneWolfController.php';
 
 $uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $method = $_SERVER['REQUEST_METHOD'];
@@ -56,6 +57,28 @@ switch ($uri) {
             if (isset($_GET['userId'])) {
                 $userId = intval($_GET['userId']); // sécurisation de l'entrée
                 (new UserController())->getAllAdventureByUser($userId);
+            } else {
+                http_response_code(400);
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'Paramètre "userId" manquant'
+                ]);
+                exit();
+            }
+        } else {
+            http_response_code(405);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Méthode non autorisée'
+            ]);
+            exit();
+        }
+        break;
+    case '/api-ldvelh/api/lonewolf/getadventurebyid':
+        if ($method === 'GET') {
+            if (isset($_GET['adventureId'])) {
+                $adventureId = intval($_GET['adventureId']);
+                (new LoneWolfController())->getAdventureById($adventureId);
             } else {
                 http_response_code(400);
                 echo json_encode([
