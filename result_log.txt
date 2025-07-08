@@ -1,14 +1,33 @@
 Array
 (
-    [status] => success
-    [message] => Connexion réussie
-    [user] => Array
+    [lone_wolf] => Array
         (
-            [id] => 1
-            [pseudo] => LoneHero
-            [mail] => hero@example.com
-            [role] => user
-            [status] => active
+            [0] => Array
+                (
+                    [id] => 1
+                    [title] => Les Maîtres des Ténèbres
+                )
+
+        )
+
+    [quete_graal] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [title] => La Forêt de la Malédiction
+                )
+
+        )
+
+    [defis_fantastiques] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1
+                    [title] => La Cité des Pièges
+                )
+
         )
 
 )

@@ -1,6 +1,6 @@
 -- Utilisateur
 INSERT INTO users (pseudo, mail, password, role, status)
-VALUES ('LoneHero', 'hero@example.com', 'hashed_password', 'user', 'active');
+VALUES ('LoneHero', 'hero@example.com', '123', 'user', 'active');
 
 -- -------------------------
 -- Défi Fantastique (DF)

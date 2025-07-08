@@ -4,6 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // CORS - doit être fait avant toute sortie
+// si le front est sur localhost 5173 le changer ici ET dans le .htaccess
 $allowedOrigins = ['http://localhost:5174'];
 
 if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
@@ -24,14 +25,18 @@ require_once __DIR__ . '/Controllers/UserController.php';
 
 $uri = strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $method = $_SERVER['REQUEST_METHOD'];
-var_dump($uri);
+// var_dump($uri);
 switch ($uri) {
     case '/api-ldvelh/api/login':
         if ($method === 'POST') {
             (new UserController())->login();
         } else {
             http_response_code(405);
-            echo json_encode(['error' => 'Méthode non autorisée']);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Methode non autorisée'
+            ]);
+            exit();
         }
         break;
     case '/api-ldvelh/api/signup':
@@ -39,11 +44,41 @@ switch ($uri) {
             (new UserController())->signup();
         } else {
             http_response_code(405);
-            echo json_encode(['error' => 'Méthode non autorisée']);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Methode non autorisée'
+            ]);
+            exit();
+        }
+        break;
+    case '/api-ldvelh/api/getalladventurebyuser':
+        if ($method === 'GET') {
+            if (isset($_GET['userId'])) {
+                $userId = intval($_GET['userId']); // sécurisation de l'entrée
+                (new UserController())->getAllAdventureByUser($userId);
+            } else {
+                http_response_code(400);
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'Paramètre "userId" manquant'
+                ]);
+                exit();
+            }
+        } else {
+            http_response_code(405);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Méthode non autorisée'
+            ]);
+            exit();
         }
         break;
     default:
         http_response_code(404);
-        echo json_encode(['error' => 'Route non trouvée']);
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Route non trouvée'
+        ]);
+        exit();
         break;
 }

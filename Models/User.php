@@ -50,7 +50,7 @@ class User extends ConnexionBdd
     }
 
     // Methode connexion
-    public function userConnexion($userMail, $userPass): array
+    public function userLogin($userMail, $userPass): array
     {
         $loginStmt = "SELECT * FROM users WHERE mail = :userMail";
         $loginStmt = $this->bdd->prepare($loginStmt);
@@ -86,5 +86,40 @@ class User extends ConnexionBdd
                 'message' => 'Pseudo ou mot de passe incorrect!'
             ];
         }
+    }
+
+    // Methode de récupération de toutes les aventure d'un utilisateur
+    public function getAllAdventureByUser($userId)
+    {
+        $result = [];
+
+        // Lone Wolf
+        $lwQuery = "SELECT lw_adventure.id , lw_adventure.title
+                FROM lw_users 
+                JOIN lw_adventure ON lw_users.lw_id = lw_adventure.id 
+                WHERE lw_users.user_id = :userId";
+        $lwStmt = $this->bdd->prepare($lwQuery);
+        $lwStmt->execute([':userId' => $userId]);
+        $result['lone_wolf'] = $lwStmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Quête du Graal
+        $qgQuery = "SELECT qg_adventure.id, qg_adventure.title 
+                FROM qg_users 
+                JOIN qg_adventure ON qg_users.qg_id = qg_adventure.id 
+                WHERE qg_users.user_id = :userId";
+        $qgStmt = $this->bdd->prepare($qgQuery);
+        $qgStmt->execute([':userId' => $userId]);
+        $result['quete_graal'] = $qgStmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Défis Fantastiques
+        $dfQuery = "SELECT df_adventure.id, df_adventure.title 
+                FROM df_users 
+                JOIN df_adventure ON df_users.df_id = df_adventure.id 
+                WHERE df_users.user_id = :userId";
+        $dfStmt = $this->bdd->prepare($dfQuery);
+        $dfStmt->execute([':userId' => $userId]);
+        $result['defis_fantastiques'] = $dfStmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }

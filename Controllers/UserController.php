@@ -19,7 +19,7 @@ class UserController
             $password = $data['password'] ?? '';
 
             $userModel = new User();
-            $result = $userModel->userConnexion($mail, $password);
+            $result = $userModel->userLogin($mail, $password);
             file_put_contents("result_log.txt", print_r($result, true));
             echo json_encode($result);
         } catch (Throwable $e) {
@@ -47,6 +47,19 @@ class UserController
             $result = $userModel->userSignUp($pseudo, $mail, $password);
             file_put_contents("result_log.txt", print_r($result, true));
             echo json_encode($result);
+        } catch (Throwable $e) {
+            http_response_code(500);
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
+    public function getAllAdventureByUser($userId)
+    {
+        try {
+            header('Content-Type: application/json');
+            $userModel = new User();
+            $result = $userModel->getAllAdventureByUser($userId);
+            file_put_contents("result_log.txt", print_r($result, true));
+            echo json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         } catch (Throwable $e) {
             http_response_code(500);
             echo json_encode(['error' => $e->getMessage()]);
