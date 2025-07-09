@@ -60,6 +60,62 @@ class LoneWolf extends ConnexionBdd
             ':discipline_more_six' => $discipline_more_six
         ]);
     }
-    public function updateAdventure() {}
-    public function deleteAdventure() {}
+
+    public function updateAdventure($id, $title, $chapter, $ability, $endurance, $weapon1, $weapon2, $discipline_one, $discipline_two, $discipline_three, $discipline_four, $discipline_five, $discipline_six, $discipline_more_one, $discipline_more_two, $discipline_more_three, $discipline_more_four, $discipline_more_five, $discipline_more_six)
+    {
+        $adventureUpdate = "UPDATE users SET 
+        title = :title,
+        chapter = :chapter,
+        ability = :ability,
+        endurance = :endurance,
+        weapon1 = :weapon1,
+        weapon2 = :weapon2,
+        discipline_one = :discipline_one,
+        discipline_two = :discipline_two,
+        discipline_three = :discipline_three,
+        discipline_four = :discipline_four,
+        discipline_five = :discipline_five,
+        discipline_six = :discipline_six,
+        discipline_more_one = :discipline_more_one,
+        discipline_more_two = :discipline_more_two,
+        discipline_more_three = :discipline_more_three,
+        discipline_more_four = :discipline_more_four,
+        discipline_more_five = :discipline_more_five,
+        discipline_more_six = :discipline_more_six
+        WHERE id = :id";
+
+        $updateStmt = $this->bdd->prepare($adventureUpdate);
+
+        $updateStmt->execute([
+            ':id' => $id,
+            ':title' => $title,
+            ':chapter' => $chapter,
+            ':ability' => $ability,
+            ':endurance' => $endurance,
+            ':weapon1' => $weapon1,
+            ':weapon2' => $weapon2,
+            ':discipline_one' => $discipline_one,
+            ':discipline_two' => $discipline_two,
+            ':discipline_three' => $discipline_three,
+            ':discipline_four' => $discipline_four,
+            ':discipline_five' => $discipline_five,
+            ':discipline_six' => $discipline_six,
+            ':discipline_more_one' => $discipline_more_one,
+            ':discipline_more_two' => $discipline_more_two,
+            ':discipline_more_three' => $discipline_more_three,
+            ':discipline_more_four' => $discipline_more_four,
+            ':discipline_more_five' => $discipline_more_five,
+            ':discipline_more_six' => $discipline_more_six
+        ]);
+
+        return [
+            'status' => 'success',
+            'message' => "Aventure mise à jour avec succès (ID : $id)"
+        ];
+    }
+    public function deleteAdventure($id)
+    {
+        $stmt = $this->bdd->prepare("DELETE FROM lw_adventure WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+    }
 }

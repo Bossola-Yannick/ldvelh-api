@@ -22,9 +22,9 @@ DROP TABLE IF EXISTS users;
 -- table USERS
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    pseudo VARCHAR(255),
+    pseudo VARCHAR(255) NOT NULL,
     mail VARCHAR(255) UNIQUE,
-    password VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
     role VARCHAR(100),
     status VARCHAR(100)
 )ENGINE=InnoDB;

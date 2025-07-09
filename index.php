@@ -100,7 +100,16 @@ switch ($uri) {
     //  TODO route a faire !!!
     case '/api-ldvelh/api/lonewolf/createadventure':
         if ($method === 'POST') {
-            (new LoneWolfController())->createAdventure();
+            if (isset($_GET['adventureId'])) {
+                $adventureId = intval($_GET['adventureId'])(new LoneWolfController())->createAdventure();
+            } else {
+                http_response_code(400);
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'Paramètre "userId" manquant'
+                ]);
+                exit();
+            }
         } else {
             http_response_code(405);
             echo json_encode([
@@ -110,8 +119,30 @@ switch ($uri) {
             exit();
         }
         break;
-    // case '/api-ldvelh/api/lonewolf/updateadventurebyid':
-    // case '/api-ldvelh/api/lonewolf/deleteadventurebyid':
+    case '/api-ldvelh/api/lonewolf/updateadventurebyid':
+        if ($method === 'PATCH') {
+            (new LoneWolfController())->updateAdventure($adventureId);
+        } else {
+            http_response_code(405);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Methode non autorisée'
+            ]);
+            exit();
+        }
+        break;
+    case '/api-ldvelh/api/lonewolf/deleteadventure':
+        if ($method === 'DELETE') {
+            (new LoneWolfController())->deleteAdventure();
+        } else {
+            http_response_code(405);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Méthode non autorisée'
+            ]);
+            exit();
+        }
+        break;
     // case '/api-ldvelh/api/fighhtingfantasy/getadventurebyid':
     // case '/api-ldvelh/api/fighhtingfantasy/updateadventurebyid':
     // case '/api-ldvelh/api/fighhtingfantasy/deleteadventurebyid':

@@ -1,0 +1,5 @@
+Array
+(
+    [status] => success
+    [message] => Inscription réussie !
+)
