@@ -98,9 +98,20 @@ switch ($uri) {
         }
         break;
     //  TODO route a faire !!!
+    case '/api-ldvelh/api/lonewolf/createadventure':
+        if ($method === 'POST') {
+            (new LoneWolfController())->createAdventure();
+        } else {
+            http_response_code(405);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Methode non autorisée'
+            ]);
+            exit();
+        }
+        break;
     // case '/api-ldvelh/api/lonewolf/updateadventurebyid':
     // case '/api-ldvelh/api/lonewolf/deleteadventurebyid':
-    // case '/api-ldvelh/api/lonewolf/createadventurebyid':
     // case '/api-ldvelh/api/fighhtingfantasy/getadventurebyid':
     // case '/api-ldvelh/api/fighhtingfantasy/updateadventurebyid':
     // case '/api-ldvelh/api/fighhtingfantasy/deleteadventurebyid':

@@ -35,7 +35,31 @@ class LoneWolf extends ConnexionBdd
         $adventure['note'] = $note;
         return ['lone_wolf' => $adventure];
     }
-    public function createAdventure() {}
+    public function createAdventure($title, $chapter, $ability, $endurance, $weapon1, $weapon2, $discipline_one, $discipline_two, $discipline_three, $discipline_for, $discipline_five, $discipline_six, $discipline_more_one, $discipline_more_two, $discipline_more_three, $discipline_more_for, $discipline_more_five, $discipline_more_six)
+    {
+        $signUpStmt = "INSERT INTO lw_adventure (title,chapter, ability,endurance,weapon1,weapon2,discipline_one, discipline_two,discipline_three,discipline_for,discipline_five,discipline_six,discipline_more_one,discipline_more_two,discipline_more_three,discipline_more_for,discipline_more_five,discipline_more_six) VALUES (:title, :chapter, :ability, :endurance, :weapon1, :weapon2, :discipline_one, :discipline_two, :discipline_three, :discipline_for, :discipline_five, :discipline_six, :discipline_more_one, :discipline_more_two, :discipline_more_three, :discipline_more_for, :discipline_more_five, :discipline_more_six)";
+        $signUpStmt = $this->bdd->prepare($signUpStmt);
+        $signUpStmt->execute([
+            ':title' => $title,
+            ':chapter' => $chapter,
+            ':ability' => $ability,
+            ':endurance' => $endurance,
+            ':weapon1' => $weapon1,
+            ':weapon2' => $weapon2,
+            ':discipline_one' => $discipline_one,
+            ':discipline_two' => $discipline_two,
+            ':discipline_three' => $discipline_three,
+            ':discipline_for' => $discipline_for,
+            ':discipline_five' => $discipline_five,
+            ':discipline_six' => $discipline_six,
+            ':discipline_more_one' => $discipline_more_one,
+            ':discipline_more_two' => $discipline_more_two,
+            ':discipline_more_three' => $discipline_more_three,
+            ':discipline_more_for' => $discipline_more_for,
+            ':discipline_more_five' => $discipline_more_five,
+            ':discipline_more_six' => $discipline_more_six
+        ]);
+    }
     public function updateAdventure() {}
     public function deleteAdventure() {}
 }
